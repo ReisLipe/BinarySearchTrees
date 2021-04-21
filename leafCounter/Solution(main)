@@ -1,0 +1,12 @@
+public class Solution {
+	public static void main(String[] args){    
+        
+        // You can create a scan or put the values of your tree here.
+        String a = "a b c d e f";
+        BSTree<String> b = new BSTree<String>();
+        int result = Result.leafCount(a,b);
+        
+        System.out.println(result);
+     
+    }
+}
