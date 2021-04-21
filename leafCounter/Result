@@ -7,6 +7,6 @@ public class Result {
 			tree.add(input[i]);
 		}
 		
-		return arvore.leafCount();
+		return tree.leafCount();
 	}
 }
