@@ -1,0 +1,103 @@
+public class BSTree<T extends Comparable<T>> {
+
+	private class Node<T> {
+		T id;
+		Node<T> leftSon;
+		Node<T> rightSon;
+		
+		private Node(T id) {
+			this.id = id;
+		}
+
+		public T getId() {
+			return id;
+		}
+
+		public Node<T> getLeftSon() {
+			return leftSon;
+		}
+
+		public void setLeftSon(Node<T> leftSon) {
+			this.leftSon = leftSon;
+		}
+
+		public Node<T> getRightSon() {
+			return rightSon;
+		}
+
+		public void setRightSon(Node<T> rightSon) {
+			this.rightSon = rightSon;
+		}
+	}
+
+	private Node<T> root = null;
+
+	public void add(T e) {
+
+		Node<T> newNode = new Node<T>(e);
+		
+		if (root == null) {
+			root = newNode;
+		} else {
+			Node<T> actual = root;
+			Node<T> father;
+			while (true) {
+				father = actual;
+				int compare = father.getId().compareTo(e);
+				
+				// Left
+				if (compare < 0) {
+					actual = actual.getLeftSon();
+					if (actual == null) {
+						father.setLeftSon(newNode);
+						break;
+					}
+				}
+
+				// Right
+				else if (compare > 0) {
+					actual = actual.getRightSon();
+					if (actual == null) {
+						father.setRightSon(newNode);
+						break;
+					}
+				}
+				
+				// Equal
+				else if(compare == 0) {
+					throw new RuntimeException("Element already exist!");
+				}
+			}
+		}
+	}
+
+    
+    public void invertTree() {
+    	invertTreeRec(root);
+    }
+    
+    public void inOrder() {
+    	inOrderRec(root);
+    }
+    
+    private void inOrder(Node<T> root){
+    	if(root != null) {
+    		inOrderRec(root.leftSon);
+    		
+    		System.out.print(root.getId() + " ");
+    		inOrderRec(root.rightSon);
+    	}
+    }
+    
+    private void invertTreeRec(Node<T> root) {
+    	if(root != null) {
+    		Node<T> temp = root.getLeftSon();
+    		root.setLeftSon(root.getRightSon());
+    		root.setRightSon(temp);
+    		
+    		invertTreeRec(root.getLeftSon());
+    		invertTreeRec(root.getRightSon());
+    	}
+    }
+    
+}
