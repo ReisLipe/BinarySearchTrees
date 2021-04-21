@@ -1,0 +1,22 @@
+public class Solution {
+	public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        
+        //You can change from "Integer" to "String" for a wider range of values in your tree.
+        BSTree<Integer> tree = new BSTree<Integer>();
+        String[] input = scan.nextLine().split(" ");
+        for (int i = 0; i < input.length; i++)
+            tree.add(Integer.parseInt(input[i]));
+        
+        // Print in order before the inversion.
+        tree.inOrder();
+        // Inversion
+        tree.invertTree();
+        System.out.println();
+        // Print in order after the inversion.
+        tree.inOrder();
+        
+        if(scan != null)
+            scan.close();
+    }
+}
